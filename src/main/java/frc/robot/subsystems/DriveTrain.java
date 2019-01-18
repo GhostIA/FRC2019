@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.commands.TankDriveWithJoystick;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import frc.robot.Robot;
 
 
 
@@ -32,6 +33,7 @@ public class DriveTrain extends Subsystem {
 	long startTime = 0;
 
 	private DifferentialDrive drive;
+	
 
 	public DriveTrain() {
 		super();
@@ -74,9 +76,12 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void drive(double left, double right) {
-		drive.tankDrive(left, right);
-		System.out.println("drive is running");
-	}
+	
+			drive.tankDrive(left, right);
+			System.out.println("drive is running");
+		}
+		
+	
 
 	public void setSafetyAndExpiration(boolean safety, double expiration) {
 		drive.setExpiration(expiration);

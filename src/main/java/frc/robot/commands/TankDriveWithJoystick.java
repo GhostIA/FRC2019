@@ -9,15 +9,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.LimitSwitches;
 
 public class TankDriveWithJoystick extends Command {
-  LimitSwitches limitSwitch = new LimitSwitches();
+  // LimitSwitches limitSwitch;
   public TankDriveWithJoystick() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.driveTrain);
     // requires(Robot.limitSwitch);
+    // limitSwitch = new LimitSwitches();
+    
     
   }
 
@@ -30,28 +31,24 @@ public class TankDriveWithJoystick extends Command {
   @Override
   protected void execute() {
     Robot.driveTrain.drive(Robot.oi.getJoystick1().getY(), Robot.oi.getJoystick2().getY());
+    System.out.println(Robot.limitSwitch.isSwitchSet());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    boolean isFinished = false;
-  /*
-   if(limitSwitch.isSwitchSet() == true){
-      isFinished = true;
-    }else{
-      isFinished = false;
-    }
-    
-   */
-  return isFinished;
+  
+     return !Robot.limitSwitch.isSwitchSet();    
+   
+  
    
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.driveTrain.drive(0, 0);
+    Robot.driveTrain.drive(0.0, 0.0);
+    Robot.driveTrain.setSafetyAndExpiration(true, 0.1);
 
   }
 
