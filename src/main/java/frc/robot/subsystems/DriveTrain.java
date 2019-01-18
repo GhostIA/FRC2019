@@ -35,7 +35,7 @@ public class DriveTrain extends Subsystem {
 
 	long startTime = 0;
 
-	private RobotDrive drive;
+	private DifferentialDrive drive;
 //	private CANTalon winch;
 //	private CANTalon pusher;
 
@@ -43,13 +43,13 @@ public class DriveTrain extends Subsystem {
 		super();
 
 	
-			frontLeftMotor = new WPI_TalonSRX(1);
-			frontRightMotor = new WPI_TalonSRX(0);
+			frontLeftMotor = new WPI_TalonSRX(0);
+			frontRightMotor = new WPI_TalonSRX(3);
 			
 
 		
 		
-		DifferentialDrive drive = new DifferentialDrive(frontRightMotor, frontLeftMotor);
+		drive = new DifferentialDrive(frontRightMotor, frontLeftMotor);
 
 //		winch = new CANTalon(5);
 //		pusher = new CANTalon(6);
