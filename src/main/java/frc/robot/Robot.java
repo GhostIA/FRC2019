@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.LimeLightCamera;
+import frc.robot.subsystems.LimitSwitches;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -26,6 +28,8 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI oi;
   public static DriveTrain driveTrain;
+  public static LimeLightCamera limeLightCamera;
+  public static LimitSwitches limitSwitch;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -38,6 +42,8 @@ public class Robot extends TimedRobot {
     oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     driveTrain = new DriveTrain();
+    limeLightCamera = new LimeLightCamera();
+    limitSwitch = new LimitSwitches();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }

@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.commands.TankDriveWithJoystick;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
 
@@ -26,33 +28,25 @@ import frc.robot.commands.TankDriveWithJoystick;
 public class DriveTrain extends Subsystem {
   private WPI_TalonSRX frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor;
 
-	// private CANTalon t1, t2;
-//	private Solenoid singleSolenoid;
 	
-
-//	boolean winchForward = false;
-//	boolean winchReverse = false;
-
 	long startTime = 0;
 
 	private DifferentialDrive drive;
-//	private CANTalon winch;
-//	private CANTalon pusher;
 
 	public DriveTrain() {
 		super();
 
 	
 			frontLeftMotor = new WPI_TalonSRX(0);
-			frontRightMotor = new WPI_TalonSRX(3);
-			
+			frontRightMotor = new WPI_TalonSRX(1);
+			frontLeftMotor.setInverted(true);
+			frontRightMotor.setInverted(true);
 
 		
 		
 		drive = new DifferentialDrive(frontRightMotor, frontLeftMotor);
 
-//		winch = new CANTalon(5);
-//		pusher = new CANTalon(6);
+
 		// Let's show everything on the LiveWindow
 
 	
