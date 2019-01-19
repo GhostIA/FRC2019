@@ -24,6 +24,7 @@ public class LimeLightCamera extends Subsystem {
     table  = NetworkTableInstance.getDefault().getTable("limelight");
 
   }
+   
   public static enum LightMode {
 		eOn, eOff, eBlink
 	}public static enum CameraMode {
@@ -35,7 +36,7 @@ public class LimeLightCamera extends Subsystem {
     return x;
   }
   
-  public static double getY(){
+  public double getY(){
     NetworkTableEntry ty = table.getEntry("ty");
     double y = ty.getDouble(0.0);
     return y;
@@ -47,11 +48,13 @@ public class LimeLightCamera extends Subsystem {
     double area = ta.getDouble(0.0);
     return area;
   }
-  public static boolean isTarget() {
+  public boolean isTarget() {
 		return getY() == 1.0;
 	}
   
-  
+  public void setPipeline(int number){
+    table.getEntry("pipeline").setNumber(number);
+  }
 
   @Override
   public void initDefaultCommand() {
