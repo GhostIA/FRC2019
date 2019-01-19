@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.LimeLightAuto;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLightCamera;
@@ -39,6 +40,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    m_autonomousCommand = new LimeLightAuto();
+    
     oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     driveTrain = new DriveTrain();
