@@ -20,6 +20,7 @@ public class LimeLightAuto extends Command {
 
   @Override
   protected void initialize() {
+    
     super.initialize();
 
     Robot.limeLightCamera.setPipeline(0);
@@ -31,6 +32,7 @@ public class LimeLightAuto extends Command {
   protected void execute() {
     double left = 4;
     double right = 5;
+    System.out.println("Auto called");
     if (!Robot.limitSwitch.isSwitchSet() == true) {
       Robot.driveTrain.drive(0, 0);
     } else {

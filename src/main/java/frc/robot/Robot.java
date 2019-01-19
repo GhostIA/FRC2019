@@ -31,16 +31,16 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static LimeLightCamera limeLightCamera;
   public static LimitSwitches limitSwitch;
-  Command m_autonomousCommand;
+  Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+  Command teleopCommand;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
-    m_autonomousCommand = new LimeLightAuto();
+   
     
     oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
@@ -49,6 +49,7 @@ public class Robot extends TimedRobot {
     limitSwitch = new LimitSwitches();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    autonomousCommand = new LimeLightAuto();
   }
 
   /**
@@ -74,7 +75,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    Scheduler.getInstance().run();
+   // Scheduler.getInstance().run();
   }
 
   /**
@@ -90,7 +91,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    autonomousCommand = m_chooser.getSelected();
+    autonomousCommand = new LimeLightAuto();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -100,8 +102,8 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
+    if (autonomousCommand != null) {
+      autonomousCommand.start();
     }
   }
 
@@ -110,7 +112,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    Scheduler.getInstance().run();
+   // Scheduler.getInstance().run();
+
   }
 
   @Override
@@ -121,8 +124,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (autonomousCommand != null) {
+      autonomousCommand.cancel();
     }
   }
 
