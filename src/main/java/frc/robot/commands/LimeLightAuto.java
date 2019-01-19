@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class LimeLightAuto extends Command {
-  
+
   public LimeLightAuto() {
     requires(Robot.limeLightCamera);
     // Use requires() here to declare subsystem dependencies
@@ -20,34 +20,48 @@ public class LimeLightAuto extends Command {
 
   @Override
   protected void initialize() {
-    
+
     super.initialize();
 
     Robot.limeLightCamera.setPipeline(0);
-    
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double left = 4;
-    double right = 5;
+    final double LEFT = 4;
+    final double RIGHT = 5;
     System.out.println("Auto called");
     if (!Robot.limitSwitch.isSwitchSet() == true) {
       Robot.driveTrain.drive(0, 0);
     } else {
       double xCoord = Robot.limeLightCamera.getX();
       double yCoord = Robot.limeLightCamera.getY();
-     
-      if(xCoord >= left){
-        Robot.driveTrain.drive(-1, 1);
-      } else{
-        Robot.driveTrain.drive(1, -1);
+      System.out.println(" x coord " + xCoord + " y coord " + yCoord);
+
+      double leftControl = 0, rightControl = 0;
+      if(xCoord == 0 || yCoord == 0){
+        // leftControl=-.9;
+        // rightControl=+.9;
+       } else{
+        if(xCoord > -5 && xCoord < 5){          
+          leftControl=-1;
+          rightControl=-1;
+        } else if(xCoord < -5){       
+          leftControl=-.8;
+          rightControl=-1.5;
+         } else if(xCoord > 5){
+         
+          leftControl=-1.5;
+          rightControl=-.8;
+        }
+        
       }
+      Robot.driveTrain.drive(leftControl, rightControl);
+      
     }
 
-    double area = Robot.limeLightCamera.getArea();
-    System.out.println(area);
   }
 
   // Make this return true when this Command no longer needs to run execute()

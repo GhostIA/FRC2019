@@ -112,7 +112,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-   // Scheduler.getInstance().run();
+    Scheduler.getInstance().run();
 
   }
 
@@ -135,7 +135,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     if (isOperatorControl() && isEnabled()) {		
-      //			Robot.drivetrain.setSafetyAndExpiration(false, 0.1);// moved to robot init
+            driveTrain.setSafetyAndExpiration(false, 0.1);
             Scheduler.getInstance().run();
             System.out.println("tele periodic is running");
     }
