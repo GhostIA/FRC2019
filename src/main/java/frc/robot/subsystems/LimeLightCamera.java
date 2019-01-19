@@ -24,14 +24,18 @@ public class LimeLightCamera extends Subsystem {
     table  = NetworkTableInstance.getDefault().getTable("limelight");
 
   }
-
+  public static enum LightMode {
+		eOn, eOff, eBlink
+	}public static enum CameraMode {
+		eVision, eDriver
+	}
   public double getX(){
     NetworkTableEntry tx = table.getEntry("tx");
     double x = tx.getDouble(0.0);
     return x;
   }
   
-  public double getY(){
+  public static double getY(){
     NetworkTableEntry ty = table.getEntry("ty");
     double y = ty.getDouble(0.0);
     return y;
@@ -43,7 +47,9 @@ public class LimeLightCamera extends Subsystem {
     double area = ta.getDouble(0.0);
     return area;
   }
-  
+  public static boolean isTarget() {
+		return getY() == 1.0;
+	}
   
   
 
