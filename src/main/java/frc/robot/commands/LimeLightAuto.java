@@ -46,30 +46,29 @@ public class LimeLightAuto extends Command {
         // rightControl=+.9;
        
        } else{
-        if(xCoord > -5 || xCoord < 5){          
+        if(xCoord > -3){          
           leftControl=-0.6;
           rightControl=-0.6;
-        } else if(xCoord < -5){       
-          leftControl=-.35;
+          System.out.println("going straight");
+        } else if(xCoord < -8){       
+          leftControl=-.45;
           rightControl=-.15;
-          if(yCoord <= 20){
-            leftControl = -.35;
-            rightControl = -0.15;
-          }
-         } else if(xCoord > 5){
-         
+          System.out.println("going right");
+          
+         } else if(xCoord > 3){
+          System.out.println("going left");
+        
           leftControl=-.15;
-          rightControl=-.35;
-          if(yCoord <= 20){
-            leftControl = -.25;
-            rightControl = -.15;
-          }
+          rightControl=-.45;
+          
         }
-       
+        
         
       }
+      System.out.println(leftControl);
+      System.out.println(rightControl);
       Robot.driveTrain.drive(leftControl, rightControl);
-     
+      
       
     }
 
