@@ -13,11 +13,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.FinalAutonomous;
 import frc.robot.commands.LimeLightAuto;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLightCamera;
 import frc.robot.subsystems.LimitSwitches;
+import frc.robot.commands.DriveStraighForXSeconds;
+import frc.robot.subsystems.USBCameraServer;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -31,6 +34,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static LimeLightCamera limeLightCamera;
   public static LimitSwitches limitSwitch;
+  public static USBCameraServer camera;
   Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   Command teleopCommand;
@@ -49,7 +53,8 @@ public class Robot extends TimedRobot {
     limitSwitch = new LimitSwitches();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    autonomousCommand = new LimeLightAuto();
+    autonomousCommand = new FinalAutonomous();
+    camera = new USBCameraServer();
   }
 
   /**
@@ -92,7 +97,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     autonomousCommand = m_chooser.getSelected();
-    autonomousCommand = new LimeLightAuto();
+    autonomousCommand = new FinalAutonomous();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",

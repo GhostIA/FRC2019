@@ -9,11 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.Timer;
 
 public class LimeLightAuto extends Command {
 
   public LimeLightAuto() {
-    requires(Robot.limeLightCamera);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -37,15 +38,17 @@ public class LimeLightAuto extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    
     System.out.println("Auto called");
     if (!Robot.limitSwitch.isSwitchSet() == true) {
       Robot.driveTrain.drive(0, 0);
       return;
     }
 
-    if (System.currentTimeMillis() - lastActionTime < 10000) {
+    if (System.currentTimeMillis() - lastActionTime < 5000) {
       double xCoord = Robot.limeLightCamera.getX();
       double yCoord = Robot.limeLightCamera.getY();
+      
       System.out.println(" x coord " + xCoord + " y coord " + yCoord);
       if (xCoord == 0 || yCoord == 0) {
         return;
@@ -72,10 +75,18 @@ public class LimeLightAuto extends Command {
 
     lastActionTime = System.currentTimeMillis();
   }
-
   private void goStraight() {
-    Robot.driveTrain.drive(-0.6, -0.6);
+    double area = Robot.limeLightCamera.getArea();
+    if(area >= .5){
+      Robot.driveTrain.drive(-.15, -.15);
+    } else{
+      Robot.driveTrain.drive(-0.8, -0.8);
+
+    }
+    
+    
     System.out.println("going straight");
+    
   }
 
   private void goLeft() {
@@ -97,6 +108,8 @@ public class LimeLightAuto extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.driveTrain.drive(0, 0);
+    
   }
 
   // Called when another command which requires one or more of the same

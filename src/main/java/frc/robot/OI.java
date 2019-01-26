@@ -8,6 +8,10 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.*;
+import frc.robot.commands.LimeLightAuto;;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,9 +20,12 @@ import frc.robot.Robot;
 public class OI {
   private Joystick joy1 = new Joystick(0);
   private Joystick joy2 = new Joystick(1);
-  public OI(){
-    
+  private JoystickButton vision = new JoystickButton(joy2, 3);
 
+  public OI(){
+    vision.whileHeld(new LimeLightAuto());
+    
+    
   }
   public Joystick getJoystick1(){
     return joy1;
@@ -26,6 +33,9 @@ public class OI {
   }
   public Joystick getJoystick2(){
     return joy2;
+  }
+  public boolean getVisionButton(){
+    return vision.get();
   }
 
   //// CREATING BUTTONS
