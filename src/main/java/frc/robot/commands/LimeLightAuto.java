@@ -27,51 +27,65 @@ public class LimeLightAuto extends Command {
 
   }
 
+  private static enum Direction {
+    left, straight, right
+  };
+
+  private Direction direction = Direction.straight;
+  private long lastActionTime = 0;
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    final double LEFT = 4;
-    final double RIGHT = 5;
     System.out.println("Auto called");
     if (!Robot.limitSwitch.isSwitchSet() == true) {
       Robot.driveTrain.drive(0, 0);
-    } else {
+      return;
+    }
+
+    if (System.currentTimeMillis() - lastActionTime < 10000) {
       double xCoord = Robot.limeLightCamera.getX();
       double yCoord = Robot.limeLightCamera.getY();
       System.out.println(" x coord " + xCoord + " y coord " + yCoord);
-
-      double leftControl = 0, rightControl = 0;
-      if(xCoord == 0 || yCoord == 0){
-        // leftControl=-.9;
-        // rightControl=+.9;
-       
-       } else{
-        if(xCoord > -3){          
-          leftControl=-0.6;
-          rightControl=-0.6;
-          System.out.println("going straight");
-        } else if(xCoord < -8){       
-          leftControl=-.45;
-          rightControl=-.15;
-          System.out.println("going right");
-          
-         } else if(xCoord > 3){
-          System.out.println("going left");
-        
-          leftControl=-.15;
-          rightControl=-.45;
-          
-        }
-        
-        
+      if (xCoord == 0 || yCoord == 0) {
+        return;
       }
-      System.out.println(leftControl);
-      System.out.println(rightControl);
-      Robot.driveTrain.drive(leftControl, rightControl);
-      
-      
+      if (xCoord >= -5 && xCoord <= 3) {
+        direction = Direction.straight;
+      } else if (xCoord < -5) {
+        direction = Direction.left;
+      } else if (xCoord > 3) {
+        direction = Direction.right;
+      }
     }
 
+    switch (direction) {
+    case left:
+      goLeft();
+      break;
+    case right:
+      goRight();
+      break;
+    default:
+      goStraight();
+    }
+
+    lastActionTime = System.currentTimeMillis();
+  }
+
+  private void goStraight() {
+    Robot.driveTrain.drive(-0.6, -0.6);
+    System.out.println("going straight");
+  }
+
+  private void goLeft() {
+    Robot.driveTrain.drive(.05, -.75);
+    System.out.println("going left");
+  }
+
+  private void goRight() {
+    Robot.driveTrain.drive(-.75, .05);
+    System.out.println("going right");
   }
 
   // Make this return true when this Command no longer needs to run execute()
