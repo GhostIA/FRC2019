@@ -53,11 +53,11 @@ public class LimeLightAuto extends Command {
       if (xCoord == 0 || yCoord == 0) {
         return;
       }
-      if (xCoord >= -5 && xCoord <= 3) {
+      if (xCoord >= -5 && xCoord <= 5) {
         direction = Direction.straight;
       } else if (xCoord < -5) {
         direction = Direction.left;
-      } else if (xCoord > 3) {
+      } else if (xCoord > 5) {
         direction = Direction.right;
       }
     }
