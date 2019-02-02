@@ -19,6 +19,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.commands.TankDriveWithJoystick;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Robot;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 
 
@@ -38,11 +39,12 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		super();
 
-	
+			
 			frontLeftMotor = new WPI_TalonSRX(0);
 			frontRightMotor = new WPI_TalonSRX(1);
 			frontLeftMotor.setInverted(true);
 			frontRightMotor.setInverted(true);
+			frontLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
 
 		
 		
@@ -81,10 +83,20 @@ public class DriveTrain extends Subsystem {
 			System.out.println("drive is running");
 		}
 		
-	
-
+	public int getEncoderPosition(){
+		int position = frontLeftMotor.getSelectedSensorPosition();
+		return position;
+	}
+	public int getWidth(){
+		int width = frontLeftMotor.getSensorCollection().getPulseWidthPosition();
+		return width;
+	}
 	public void setSafetyAndExpiration(boolean safety, double expiration) {
 		drive.setExpiration(expiration);
 		drive.setSafetyEnabled(safety);
+	}
+	public double getVelocity(){
+		double velocity = frontLeftMotor.getSelectedSensorVelocity();
+		return velocity;
 	}
 }
