@@ -19,6 +19,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLightCamera;
 import frc.robot.subsystems.LimitSwitches;
+import frc.robot.subsystems.TurnTable;
 import frc.robot.commands.DriveStraighForXSeconds;
 import frc.robot.subsystems.USBCameraServer;
 import frc.robot.subsystems.ArmControlConsole;
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
   public static LimeLightCamera limeLightCamera;
   public static LimitSwitches limitSwitch;
   public static USBCameraServer camera;
+  public static TurnTable turnTable;
   Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   Command teleopCommand;
@@ -52,6 +54,7 @@ public class Robot extends TimedRobot {
     driveTrain = new DriveTrain();
     limeLightCamera = new LimeLightCamera();
     limitSwitch = new LimitSwitches();
+    turnTable = new TurnTable();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     autonomousCommand = new FinalAutonomous();
