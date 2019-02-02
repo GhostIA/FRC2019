@@ -21,6 +21,7 @@ import frc.robot.subsystems.LimeLightCamera;
 import frc.robot.subsystems.LimitSwitches;
 import frc.robot.commands.DriveStraighForXSeconds;
 import frc.robot.subsystems.USBCameraServer;
+import frc.robot.subsystems.ArmControlConsole;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -132,6 +133,15 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
+
+    // // this is the code for the buttons. commented out for now. Make sure you uncomment in OI
+    // ArmControlConsole.Action action = oi.getNextAction();
+
+    // if(action == ArmControlConsole.Action.LOADING_LOW) {
+    //   // move arm low
+    // }
+
+    
   }
 
   /**

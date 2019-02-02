@@ -11,7 +11,8 @@ import frc.robot.Robot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.*;
-import frc.robot.commands.LimeLightAuto;;
+import frc.robot.commands.LimeLightAuto;
+import frc.robot.subsystems.ArmControlConsole;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,6 +21,7 @@ import frc.robot.commands.LimeLightAuto;;
 public class OI {
   private Joystick joy1 = new Joystick(0);
   private Joystick joy2 = new Joystick(1);
+  // private ArmControlConsole armControlConsole = new ArmControlConsole(3);
   private JoystickButton vision = new JoystickButton(joy2, 3);
 
   public OI(){
@@ -36,6 +38,10 @@ public class OI {
   }
   public boolean getVisionButton(){
     return vision.get();
+  }
+
+  public ArmControlConsole.Action getNextAction() {
+    return armControlConsole.getNextAction();
   }
 
   //// CREATING BUTTONS
