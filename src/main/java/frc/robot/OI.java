@@ -23,6 +23,7 @@ public class OI {
   private Joystick joy2 = new Joystick(1);
   private ArmControlConsole armControlConsole = new ArmControlConsole(3);
   private JoystickButton vision = new JoystickButton(joy2, 3);
+   
 
   public OI(){
     vision.whileHeld(new LimeLightAuto());
@@ -43,6 +44,7 @@ public class OI {
   public ArmControlConsole.Action getNextAction() {
     return armControlConsole.getNextAction();
   }
+  
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
