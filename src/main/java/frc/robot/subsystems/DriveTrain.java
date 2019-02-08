@@ -82,7 +82,7 @@ public class DriveTrain extends Subsystem {
 			drive.tankDrive(left, right);
 			System.out.println("drive is running");
 		}
-		
+	
 	public int getEncoderPosition(){
 		int position = frontLeftMotor.getSelectedSensorPosition();
 		return position;
