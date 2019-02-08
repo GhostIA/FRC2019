@@ -22,7 +22,7 @@ public class FinalAutonomous extends CommandGroup {
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
     // these will run in order.
-    addSequential(new DriveStraighForXSeconds(2));
+    addSequential(new GoStraightEncoder());
     addSequential(new TurnLeft(.3));
     addSequential(new LimeLightAuto());
 

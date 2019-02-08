@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.Timer;
 public class GoStraightEncoder extends Command {
 
   public GoStraightEncoder() {
-    super();
     requires(Robot.driveTrain);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
