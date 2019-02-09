@@ -23,6 +23,7 @@ public class OI {
   private Joystick joy2 = new Joystick(1);
   private ArmControlConsole armControlConsole = new ArmControlConsole(3);
   private JoystickButton vision = new JoystickButton(joy2, 3);
+  private JoystickButton turnTableButton = new JoystickButton(joy1, 4);
    
 
   public OI(){
@@ -43,6 +44,9 @@ public class OI {
 
   public ArmControlConsole.Action getNextAction() {
     return armControlConsole.getNextAction();
+  }
+  public boolean isTurnButtonSet(){
+    return turnTableButton.get();
   }
   
 

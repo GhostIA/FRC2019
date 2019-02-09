@@ -23,21 +23,26 @@ public class TurnTableForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    while(Robot.oi.getNextAction() == Action.CARGO_UP){
-      Robot.turnTable.turnTableForward();
-    }
+
+      Robot.turnTable.turn(true);
+
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if(Robot.oi.isTurnButtonSet() == true){
+      return false;
+    }  else{
+      return true;
+    }
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.turnTable.turnTableStop();
+    Robot.turnTable.turn(false);
   }
 
   // Called when another command which requires one or more of the same
