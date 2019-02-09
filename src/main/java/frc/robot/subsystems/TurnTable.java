@@ -30,6 +30,11 @@ public class TurnTable extends Subsystem {
     turnTableMotor.set(0);
   }
 
+  // this is for debugging
+  public void setMotor(WPI_TalonSRX turnTableMotor) {
+    this.turnTableMotor = turnTableMotor;
+  }
+
   public void reset() {
     isTurning = false;
     elapsedTime = 0;

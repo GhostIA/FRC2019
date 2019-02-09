@@ -20,6 +20,18 @@ public class ArmControlConsole {
         joystick = new Joystick(port);
     }
 
+// // example use
+// ArmControlConsole console = new ArmControlConsole(3);
+
+// // in execute() {
+//     ArmControlConsole.Action action = console.getNextAction();
+
+//     if(action ==ArmControlConsole.Action.ROCKET_LOW) {
+//         // do something
+//     }
+
+// }
+
     public Action getNextAction() {
         int lastButtonPressed = lastButtonPressed();
         Action nextAction = Action.NONE;
