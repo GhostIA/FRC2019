@@ -40,6 +40,7 @@ public class TurnTableForward extends Command {
     if(Robot.oi.getVisionButton() == false){
       return false;
     } else{
+      Robot.turnTable.reset();
       return true;
     }
   }
