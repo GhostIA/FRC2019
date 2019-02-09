@@ -21,6 +21,7 @@ public class TurnTableForward extends Command {
   protected void initialize() {
 
     super.initialize();
+    Robot.turnTable.reset();
   }
 
   // Called just before this Command runs the first time
@@ -28,19 +29,16 @@ public class TurnTableForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("turning");
-      Robot.turnTable.turn(true);
-      
-    
+      Robot.turnTable.turn(true);   
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.oi.getVisionButton() == false){
+    if(Robot.oi.isTurnButtonSet() == false){
       return false;
     } else{
-      Robot.turnTable.reset();
+     
       return true;
     }
   }
@@ -48,7 +46,7 @@ public class TurnTableForward extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.turnTable.turn(false);
+    Robot.turnTable.reset();   
   }
 
   // Called when another command which requires one or more of the same

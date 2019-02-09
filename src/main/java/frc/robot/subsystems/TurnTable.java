@@ -17,14 +17,14 @@ public class TurnTable extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private WPI_TalonSRX turnTableMotor;
-  private long startTime;
+  private long startTime = 0;
   private boolean isTurning = false;
 
-  private static final long TURN_TIME = 100;
+  private static final long TURN_TIME = 1000;
   private static final double SPEED = 0.5;
   private static final int PORT = 2;
 
-  public TurnTable(){
+  public TurnTable() {
     super();
     turnTableMotor = new WPI_TalonSRX(PORT);
     turnTableMotor.set(0);
@@ -36,21 +36,24 @@ public class TurnTable extends Subsystem {
   }
 
   public void reset() {
+    turnTableMotor.set(0);
+    startTime = 0;
     isTurning = false;
   }
 
-  // must call reset() prior to a turn. then call turn(ture|false) in iterative. it will stop 
+  // must call reset() prior to a turn. then call turn(ture|false) in iterative.
+  // it will stop
   // when time reached
   // e.g.
   // execute() {
-  //  if(buttonPressed) {
-  //     turnTable.reset();
-  //    turnTable.turn(true);
-  //  }
+  // if(buttonPressed) {
+  // turnTable.reset();
+  // turnTable.turn(true);
+  // }
   // }
 
-  public void turn(boolean forward) {
-    if(!isTurning) {
+  public synchronized void turn(boolean forward) {
+    if (!isTurning) {
       System.out.println("Starting...");
       startTime = System.currentTimeMillis();
       isTurning = true;
@@ -59,30 +62,24 @@ public class TurnTable extends Subsystem {
     }
 
     long elapsedTime = System.currentTimeMillis() - startTime;
-    if(elapsedTime < TURN_TIME) {
-      if(elapsedTime > 1000) {
-        System.out.println("elapsed time:" + elapsedTime);
-      }
+    if (elapsedTime < TURN_TIME) {
+      return;
     }
-    else {
-      System.out.println("turn ended");
-      turnTableMotor.set(0);
-    }
+    System.out.println("turn ended");
+    turnTableMotor.set(0);
   }
 
-  private void iterativeTurn(boolean forward){
-    if(forward) {
+  private synchronized void iterativeTurn(boolean forward) {
+    if (forward) {
       turnTableMotor.set(SPEED);
-    }
-    else { 
+    } else {
       turnTableMotor.set(-SPEED);
     }
   }
 
-  public void stop(){
-    
-  }
+  public void stop() {
 
+  }
 
   @Override
   public void initDefaultCommand() {
