@@ -13,9 +13,14 @@ import frc.robot.subsystems.ArmControlConsole.Action;
 
 public class TurnTableForward extends Command {
   public TurnTableForward() {
-    requires(Robot.turnTable);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+  }
+
+  @Override
+  protected void initialize() {
+
+    super.initialize();
   }
 
   // Called just before this Command runs the first time
@@ -23,18 +28,18 @@ public class TurnTableForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
+    System.out.println("turning");
       Robot.turnTable.turn(true);
-
+      
     
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.oi.isTurnButtonSet() == true){
+    if(Robot.oi.getVisionButton() == false){
       return false;
-    }  else{
+    } else{
       return true;
     }
   }

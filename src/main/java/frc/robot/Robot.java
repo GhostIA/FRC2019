@@ -46,15 +46,13 @@ public class Robot extends TimedRobot {
    * used for any initialization code.
    */
   @Override
-  public void robotInit() {
-   
-    
+  public void robotInit() { 
+    turnTable = new TurnTable();
     oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     driveTrain = new DriveTrain();
     limeLightCamera = new LimeLightCamera();
     limitSwitch = new LimitSwitches();
-    turnTable = new TurnTable();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     autonomousCommand = new FinalAutonomous();
@@ -155,7 +153,7 @@ public class Robot extends TimedRobot {
     if (isOperatorControl() && isEnabled()) {		
             driveTrain.setSafetyAndExpiration(false, 0.1);
             Scheduler.getInstance().run();
-            System.out.println("tele periodic is running");
+//            System.out.println("tele periodic is running");
     }
   }
 

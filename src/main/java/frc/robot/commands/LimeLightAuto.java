@@ -49,7 +49,7 @@ public class LimeLightAuto extends Command {
       double xCoord = Robot.limeLightCamera.getX();
       double yCoord = Robot.limeLightCamera.getY();
       
-      System.out.println(" x coord " + xCoord + " y coord " + yCoord);
+     // System.out.println(" x coord " + xCoord + " y coord " + yCoord);
       if (xCoord == 0 || yCoord == 0) {
         return;
       }

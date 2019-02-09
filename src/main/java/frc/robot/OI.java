@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.*;
 import frc.robot.commands.LimeLightAuto;
 import frc.robot.subsystems.ArmControlConsole;
+import frc.robot.commands.TurnTableForward;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -28,8 +29,7 @@ public class OI {
 
   public OI(){
     vision.whileHeld(new LimeLightAuto());
-    
-    
+    turnTableButton.whileHeld(new TurnTableForward());
   }
   public Joystick getJoystick1(){
     return joy1;
@@ -49,7 +49,6 @@ public class OI {
     return turnTableButton.get();
   }
   
-
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.

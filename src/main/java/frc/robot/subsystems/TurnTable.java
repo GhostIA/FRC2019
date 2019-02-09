@@ -17,10 +17,10 @@ public class TurnTable extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private WPI_TalonSRX turnTableMotor;
-  private long elapsedTime;
-  private boolean isTurning;
+  private long startTime;
+  private boolean isTurning = false;
 
-  private static final long TURN_TIME = 1000;
+  private static final long TURN_TIME = 100;
   private static final double SPEED = 0.5;
   private static final int PORT = 2;
 
@@ -37,7 +37,6 @@ public class TurnTable extends Subsystem {
 
   public void reset() {
     isTurning = false;
-    elapsedTime = 0;
   }
 
   // must call reset() prior to a turn. then call turn(ture|false) in iterative. it will stop 
@@ -52,16 +51,21 @@ public class TurnTable extends Subsystem {
 
   public void turn(boolean forward) {
     if(!isTurning) {
-      elapsedTime = 0;
+      System.out.println("Starting...");
+      startTime = System.currentTimeMillis();
       isTurning = true;
       iterativeTurn(forward);
       return;
     }
 
-    if(System.currentTimeMillis() - elapsedTime < TURN_TIME) {
-      iterativeTurn(forward);
+    long elapsedTime = System.currentTimeMillis() - startTime;
+    if(elapsedTime < TURN_TIME) {
+      if(elapsedTime > 1000) {
+        System.out.println("elapsed time:" + elapsedTime);
+      }
     }
     else {
+      System.out.println("turn ended");
       turnTableMotor.set(0);
     }
   }
