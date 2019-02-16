@@ -39,7 +39,7 @@ public class LimeLightAuto extends Command {
   @Override
   protected void execute() {
     
-    System.out.println("Auto called");
+    // System.out.println("Auto called");
     if (!Robot.limitSwitch.isSwitchSet() == true) {
       Robot.driveTrain.drive(0, 0);
       return;

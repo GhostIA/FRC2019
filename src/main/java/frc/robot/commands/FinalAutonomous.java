@@ -23,8 +23,8 @@ public class FinalAutonomous extends CommandGroup {
     // addSequential(new Command2());
     // these will run in order.
     addSequential(new GoStraightEncoder());
-    addSequential(new TurnLeft(.3));
-    addSequential(new LimeLightAuto());
+    // addSequential(new TurnLeft(.3));
+    // addSequential(new LimeLightAuto());
 
     // To run multiple commands at the same time,
     // use addParallel()

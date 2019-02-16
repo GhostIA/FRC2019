@@ -9,10 +9,10 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.Timer;
+
 
 public class GoStraightEncoder extends Command {
-
+  long initialTime;
   public GoStraightEncoder() {
     requires(Robot.driveTrain);
     // Use requires() here to declare subsystem dependencies
@@ -22,45 +22,49 @@ public class GoStraightEncoder extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  
+    initialTime = System.currentTimeMillis();  
   
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double velocity, time, distance;
-    double FINAL_DISTANCE;
-    Timer timer = new Timer();
-    
     Robot.driveTrain.drive(0.5, 0.5);
-    velocity = Robot.driveTrain.getVelocity();
-    time = timer.get();
-    distance = time * velocity;
-    FINAL_DISTANCE = 7.0;
-    if(distance >= FINAL_DISTANCE){
-      Robot.driveTrain.drive(0, 0);
-    }
+    System.out.println("is running");
+   
+    
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.driveTrain.getVelocity() == 0){
-      return true;
-    } else {
-      return false;
-    }
+      long deltaTime = System.currentTimeMillis() - initialTime;
+      return isRobotDone(deltaTime/1000, Robot.driveTrain.getVelocity());
+    
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.driveTrain.drive(0, 0);
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
+ 
+
+public double getDistance(Long time, double velocity){
+  velocity = velocity/1000;
+  return 6*Math.PI*velocity*time;
   }
+  public boolean isRobotDone(Long time, double velocity){
+    if(getDistance(time, velocity) >= 120){
+      return true;
+    } else{
+      return false;
+    }
+  }
+  
 }
