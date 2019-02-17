@@ -45,12 +45,12 @@ public class LimeLightAuto extends Command {
       return;
     }
 
-    if (System.currentTimeMillis() - lastActionTime < 5000) {
+    if (System.currentTimeMillis() - lastActionTime < 3000) {
       double xCoord = Robot.limeLightCamera.getX();
       double yCoord = Robot.limeLightCamera.getY();
       
      // System.out.println(" x coord " + xCoord + " y coord " + yCoord);
-      if (xCoord == 0 || yCoord == 0) {
+      if (xCoord == 0 && yCoord == 0) {
         return;
       }
       if (xCoord >= -5 && xCoord <= 5) {
@@ -77,26 +77,39 @@ public class LimeLightAuto extends Command {
   }
   private void goStraight() {
     double area = Robot.limeLightCamera.getArea();
-    if(area >= .5){
-      Robot.driveTrain.drive(-.15, -.15);
+    if(area < 3){
+      
+      Robot.driveTrain.drive(-.8,-.8);
     } else{
-      Robot.driveTrain.drive(-0.8, -0.8);
+      Robot.driveTrain.drive(-0.5,-0.5);
+      
+      //System.out.println(Robot.driveTrain.getSpeed());
 
     }
     
-    
-    System.out.println("going straight");
+    //System.out.println(area);
+   
     
   }
 
   private void goLeft() {
-    Robot.driveTrain.drive(.05, -.75);
-    System.out.println("going left");
+    double area = Robot.limeLightCamera.getArea();
+    if(area < 3){
+    Robot.driveTrain.drive(-.85, .00);
+    } else{
+      Robot.driveTrain.drive(.5, -.5);
+    }
+   System.out.println("going left");
   }
 
   private void goRight() {
-    Robot.driveTrain.drive(-.75, .05);
-    System.out.println("going right");
+    double area = Robot.limeLightCamera.getArea();
+    if(area < 3){
+    Robot.driveTrain.drive(.00, -.85);
+    } else{
+      Robot.driveTrain.drive(.5, -.5);
+    }
+     System.out.println("going right");
   }
 
   // Make this return true when this Command no longer needs to run execute()

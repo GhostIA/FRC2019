@@ -42,8 +42,7 @@ public class DriveTrain extends Subsystem {
 			
 			frontLeftMotor = new WPI_TalonSRX(1);
 			frontRightMotor = new WPI_TalonSRX(2);
-			frontLeftMotor.setInverted(true);
-			frontRightMotor.setInverted(true);
+			
 			frontLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
 
 		
@@ -98,5 +97,9 @@ public class DriveTrain extends Subsystem {
 	public double getVelocity(){
 		double velocity = frontLeftMotor.getSelectedSensorVelocity();
 		return velocity;
+	}
+	public double getSpeed(){
+		double speed = frontLeftMotor.get();
+		return speed;
 	}
 }

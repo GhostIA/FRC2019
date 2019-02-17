@@ -29,9 +29,9 @@ public class GoStraightEncoder extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.drive(0.5, 0.5);
+    Robot.driveTrain.drive(-0.5, -0.5);
     System.out.println("is running");
-   
+    System.out.println(Robot.driveTrain.getVelocity());
     
     
   }
@@ -57,10 +57,10 @@ public class GoStraightEncoder extends Command {
 
 public double getDistance(Long time, double velocity){
   velocity = velocity/1000;
-  return 6*Math.PI*velocity*time;
+  return 6*Math.PI*velocity*time*-1;
   }
   public boolean isRobotDone(Long time, double velocity){
-    if(getDistance(time, velocity) >= 120){
+    if(getDistance(time, velocity) >= 60){
       return true;
     } else{
       return false;

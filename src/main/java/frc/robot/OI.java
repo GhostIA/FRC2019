@@ -23,7 +23,7 @@ public class OI {
   private Joystick joy1 = new Joystick(0);
   private Joystick joy2 = new Joystick(1);
   private ArmControlConsole armControlConsole = new ArmControlConsole(3);
-  private JoystickButton vision = new JoystickButton(joy2, 3);
+  private JoystickButton vision = new JoystickButton(joy1, 3);
   private JoystickButton turnTableButton = new JoystickButton(joy1, 4);
    
 

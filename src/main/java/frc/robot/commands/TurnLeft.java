@@ -34,9 +34,9 @@ public class TurnLeft extends TimedCommand {
   protected void execute() {
     boolean dbButton = SmartDashboard.getBoolean("DB/Button 1", false);
     if(dbButton == true){
-      Robot.driveTrain.drive(0.8, -0.8);
+      Robot.driveTrain.drive(0.8, -0.7);
     } else{
-      Robot.driveTrain.drive(-0.8, 0.8);
+      Robot.driveTrain.drive(-0.7, 0.8);
     }
     
   }
