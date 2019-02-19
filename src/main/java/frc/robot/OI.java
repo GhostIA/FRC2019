@@ -25,11 +25,15 @@ public class OI {
   private ArmControlConsole armControlConsole = new ArmControlConsole(3);
   private JoystickButton vision = new JoystickButton(joy1, 3);
   private JoystickButton turnTableButton = new JoystickButton(joy1, 4);
-   
+  private JoystickButton armOneForwardButton = new JoystickButton(joy2, 1);
+  private JoystickButton armTwoForwardButton = new JoystickButton(joy2, 2);
+  private JoystickButton armThreeForwardButton = new JoystickButton(joy2, 3);
+  
 
   public OI(){
     vision.whileHeld(new LimeLightAuto());
     turnTableButton.whileHeld(new TurnTableForward());
+
   }
   public Joystick getJoystick1(){
     return joy1;
