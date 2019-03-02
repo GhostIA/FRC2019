@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.*;
 import frc.robot.commands.LimeLightAuto;
 import frc.robot.subsystems.ArmControlConsole;
 import frc.robot.commands.TurnTableForward;
+import frc.robot.commands.ActivatePiston;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -26,13 +27,13 @@ public class OI {
   private JoystickButton vision = new JoystickButton(joy1, 3);
   private JoystickButton turnTableButton = new JoystickButton(joy1, 4);
   private JoystickButton armOneForwardButton = new JoystickButton(joy2, 1);
-  private JoystickButton armTwoForwardButton = new JoystickButton(joy2, 2);
-  private JoystickButton armThreeForwardButton = new JoystickButton(joy2, 3);
+  private JoystickButton pistonButton = new JoystickButton(joy2, 2);
   
 
   public OI(){
     vision.whileHeld(new LimeLightAuto());
     turnTableButton.whileHeld(new TurnTableForward());
+    pistonButton.whenPressed(new ActivatePiston());
 
   }
   public Joystick getJoystick1(){

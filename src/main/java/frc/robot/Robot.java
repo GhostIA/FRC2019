@@ -22,6 +22,7 @@ import frc.robot.commands.ArmOneForward;
 import frc.robot.commands.DriveStraighForXSeconds;
 import frc.robot.subsystems.USBCameraServer;
 import frc.robot.subsystems.ArmControlConsole;
+import frc.robot.subsystems.Piston;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
   public static USBCameraServer camera;
   public static TurnTable turnTable;
   public static ArmSubsystem armControls;
+  public static Piston piston;
   Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   Command teleopCommand;
@@ -59,6 +61,7 @@ public class Robot extends TimedRobot {
     autonomousCommand = new FinalAutonomous();
     camera = new USBCameraServer();
     armControls = new ArmSubsystem();
+    piston = new Piston();
   }
 
   /**
