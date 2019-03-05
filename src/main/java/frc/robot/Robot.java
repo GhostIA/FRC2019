@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   public static USBCameraServer camera;
   public static TurnTable turnTable;
   public static ArmSubsystem armControls;
-  public static Piston piston;
+  public static Piston piston1, piston2;
   Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   Command teleopCommand;
@@ -51,8 +51,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() { 
     turnTable = new TurnTable();
+
+    piston1 = new Piston(0); 
+    piston2 = new Piston(1); 
     oi = new OI();
-   
     driveTrain = new DriveTrain();
     limeLightCamera = new LimeLightCamera();
     limitSwitch = new LimitSwitches();
@@ -61,7 +63,6 @@ public class Robot extends TimedRobot {
     autonomousCommand = new FinalAutonomous();
     camera = new USBCameraServer();
     armControls = new ArmSubsystem();
-    piston = new Piston();
   }
 
   /**

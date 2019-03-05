@@ -27,13 +27,16 @@ public class OI {
   private JoystickButton vision = new JoystickButton(joy1, 3);
   private JoystickButton turnTableButton = new JoystickButton(joy1, 4);
   private JoystickButton armOneForwardButton = new JoystickButton(joy2, 1);
-  private JoystickButton pistonButton = new JoystickButton(joy2, 2);
+  // private JoystickButton pistonButton = new JoystickButton(joy2, 2);
+  private JoystickButton pistonButton1 = new JoystickButton(joy1, 1);
+  private JoystickButton pistonButton2 = new JoystickButton(joy1, 2);
   
 
   public OI(){
     vision.whileHeld(new LimeLightAuto());
     turnTableButton.whileHeld(new TurnTableForward());
-    pistonButton.whenPressed(new ActivatePiston());
+    pistonButton1.whileHeld(new ActivatePiston(Robot.piston1));
+    pistonButton2.whileHeld(new ActivatePiston(Robot.piston2));
 
   }
   public Joystick getJoystick1(){

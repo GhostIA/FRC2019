@@ -6,16 +6,18 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.Piston;
 
 public class ActivatePiston extends Command {
-  public ActivatePiston() {
+  private Piston piston;
+
+  public ActivatePiston(Piston piston) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.piston);
+    requires(piston);
+    this.piston = piston;
   }
 
  
@@ -24,7 +26,7 @@ public class ActivatePiston extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.piston.activatePiston();
+    piston.turnPiston(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +37,9 @@ public class ActivatePiston extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    piston.turnPiston(false);
+  }
   
 
   // Called when another command which requires one or more of the same

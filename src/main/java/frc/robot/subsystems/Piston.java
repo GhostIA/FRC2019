@@ -8,28 +8,36 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Solenoid;;
 
 /**
  * Add your docs here.
  */
 public class Piston extends Subsystem {
-  private Solenoid piston;
-  private final int PORT = 4;
+  private Solenoid  piston;
+  private int port;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public Piston(){
-    piston = new Solenoid(PORT);
+
+  public static enum Direction {
+    forward, reverse, off
+  };
+
+  public Piston(int port){
+    this.port = port;
+    piston = new Solenoid(port);
   }
-  public boolean getInOrOut(){
+  public boolean get(){
     return piston.get();
   }
-  public void activatePiston(){
-    if (getInOrOut() == true){
-      piston.set(false);
-    } else{
-      piston.set(true);
+
+  public void turnPiston(boolean on){
+    if (piston.get() == on) {
+      return;
     }
+
+    System.out.println(" turned piston " + port);
+    piston.set(on);
   }
 
   @Override
