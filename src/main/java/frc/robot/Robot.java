@@ -18,7 +18,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLightCamera;
 import frc.robot.subsystems.LimitSwitches;
 import frc.robot.subsystems.TurnTable;
-import frc.robot.commands.ArmOneForward;
+import frc.robot.subsystems.RotatingControl;
 import frc.robot.commands.DriveStraighForXSeconds;
 import frc.robot.subsystems.USBCameraServer;
 import frc.robot.subsystems.ArmControlConsole;
@@ -41,6 +41,7 @@ public class Robot extends TimedRobot {
   public static TurnTable turnTable;
   public static ArmSubsystem armControls;
   public static Piston piston1, piston2;
+  public static RotatingControl arm;
   Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   Command teleopCommand;
@@ -51,7 +52,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() { 
     turnTable = new TurnTable();
-
+    arm = new RotatingControl(2);
     piston1 = new Piston(0); 
     piston2 = new Piston(1); 
     oi = new OI();

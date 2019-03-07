@@ -8,32 +8,31 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Solenoid;;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;;
+
 
 /**
  * Add your docs here.
  */
-public class Piston extends Subsystem {
-  private Solenoid  piston;
-  private int port;
+public class RotatingControl extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public Piston(int port){
-    this.port = port;
-    piston = new Solenoid(port);
-  }
-  public boolean get(){
-    return piston.get();
+  private WPI_TalonSRX motor;
+  private static final double SPEED = .1;
+
+  public RotatingControl(int port) {
+    super();
+    motor = new WPI_TalonSRX(port);
+    motor.set(0);
   }
 
-  public void turnPiston(boolean on){
-    if (piston.get() == on) {
-      return;
-    }
+  public void turn(boolean forward) {
+    motor.set(forward ? SPEED : -SPEED);
+  }
 
-    System.out.println(" turned piston " + port);
-    piston.set(on);
+  public void stop() {
+    motor.set(0);
   }
 
   @Override

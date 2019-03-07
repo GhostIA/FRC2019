@@ -15,6 +15,7 @@ import frc.robot.commands.LimeLightAuto;
 import frc.robot.subsystems.ArmControlConsole;
 import frc.robot.commands.TurnTableForward;
 import frc.robot.commands.ActivatePiston;
+import frc.robot.commands.MoveArm;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -30,11 +31,15 @@ public class OI {
   // private JoystickButton pistonButton = new JoystickButton(joy2, 2);
   private JoystickButton pistonButton1 = new JoystickButton(joy1, 1);
   private JoystickButton pistonButton2 = new JoystickButton(joy1, 2);
+  private JoystickButton armForwardButton = new JoystickButton(joy1, 3);
+  private JoystickButton armReverseButton = new JoystickButton(joy1, 4);
   
 
   public OI(){
     vision.whileHeld(new LimeLightAuto());
     turnTableButton.whileHeld(new TurnTableForward());
+    armForwardButton.whileHeld(new MoveArm(Robot.arm, true));
+    armReverseButton.whileHeld(new MoveArm(Robot.arm, false));
     pistonButton1.whileHeld(new ActivatePiston(Robot.piston1));
     pistonButton2.whileHeld(new ActivatePiston(Robot.piston2));
 
