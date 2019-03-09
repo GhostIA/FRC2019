@@ -23,17 +23,18 @@ public class Piston extends Subsystem {
     this.port = port;
     piston = new Solenoid(port);
   }
-  public boolean get(){
+  public boolean isOn(){
     return piston.get();
   }
 
-  public void turnPiston(boolean on){
-    if (piston.get() == on) {
-      return;
+  public void on(){
+    if (piston.get() == false) {
+     piston.set(true);
     }
+  }
 
-    System.out.println(" turned piston " + port);
-    piston.set(on);
+  public void off() {
+    piston.set(false);
   }
 
   @Override
