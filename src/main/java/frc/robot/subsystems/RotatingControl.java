@@ -28,7 +28,7 @@ public class RotatingControl extends Subsystem {
   }
 
   public void turn(boolean forward) {
-    motor.set(forward ? SPEED : -SPEED);
+    motor.set(forward ? SPEED * 5 : SPEED * 2);
   }
 
   public void stop() {

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 import frc.robot.subsystems.Piston;
 
 public class ActivatePiston extends Command {
@@ -22,9 +23,11 @@ public class ActivatePiston extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (!piston.isOn()) {
-      piston.on();
-    }
+   piston.on();
+
+   if(Robot.limitSwitch.isSwitch2Set()){
+     piston.off();
+   }
   }
 
   // Make this return true when this Command no longer needs to run execute()

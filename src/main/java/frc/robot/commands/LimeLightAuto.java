@@ -40,7 +40,7 @@ public class LimeLightAuto extends Command {
   protected void execute() {
     
     // System.out.println("Auto called");
-    if (!Robot.limitSwitch.isSwitchSet() == true) {
+    if (!Robot.limitSwitch.isSwitch1Set() == true) {
       Robot.driveTrain.drive(0, 0);
       return;
     }
@@ -99,7 +99,7 @@ public class LimeLightAuto extends Command {
     } else{
       Robot.driveTrain.drive(.5, -.5);
     }
-   System.out.println("going left");
+  //  System.out.println("going left");
   }
 
   private void goRight() {
@@ -109,7 +109,7 @@ public class LimeLightAuto extends Command {
     } else{
       Robot.driveTrain.drive(.5, -.5);
     }
-     System.out.println("going right");
+    //  System.out.println("going right");
   }
 
   // Make this return true when this Command no longer needs to run execute()

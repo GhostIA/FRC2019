@@ -30,7 +30,7 @@ public class TankDriveWithJoystick extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (!Robot.limitSwitch.isSwitchSet() == true){
+    if (!Robot.limitSwitch.isSwitch1Set() == true){
       Robot.driveTrain.drive(0,0);
     } else{
       Robot.driveTrain.drive(Robot.oi.getJoystick1().getY(), Robot.oi.getJoystick2().getY());

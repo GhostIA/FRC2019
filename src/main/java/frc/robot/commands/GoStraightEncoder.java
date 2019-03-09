@@ -30,8 +30,8 @@ public class GoStraightEncoder extends Command {
   @Override
   protected void execute() {
     Robot.driveTrain.drive(-0.5, -0.5);
-    System.out.println("is running");
-    System.out.println(Robot.driveTrain.getVelocity());
+    // System.out.println("is running");
+    //System.out.println(Robot.driveTrain.getVelocity());
     
     
   }

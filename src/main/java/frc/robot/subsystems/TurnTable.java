@@ -54,7 +54,7 @@ public class TurnTable extends Subsystem {
 
   public synchronized void turn(boolean forward) {
     if (!isTurning) {
-      System.out.println("Starting...");
+      // System.out.println("Starting...");
       startTime = System.currentTimeMillis();
       isTurning = true;
       iterativeTurn(forward);
@@ -65,7 +65,7 @@ public class TurnTable extends Subsystem {
     if (elapsedTime < TURN_TIME) {
       return;
     }
-    System.out.println("turn ended");
+    // System.out.println("turn ended");
     turnTableMotor.set(0);
   }
 

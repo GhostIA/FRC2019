@@ -53,8 +53,8 @@ public class Robot extends TimedRobot {
   public void robotInit() { 
     turnTable = new TurnTable();
     arm = new RotatingControl(2);
-    piston1 = new Piston(0); 
-    piston2 = new Piston(1); 
+    piston1 = new Piston(2, 3); 
+   
     oi = new OI();
     driveTrain = new DriveTrain();
     limeLightCamera = new LimeLightCamera();

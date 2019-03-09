@@ -40,7 +40,7 @@ public class OI {
     armForwardButton.whileHeld(new MoveArm(Robot.arm, true));
     armReverseButton.whileHeld(new MoveArm(Robot.arm, false));
     pistonButton1.whileHeld(new ActivatePiston(Robot.piston1));
-    pistonButton2.whileHeld(new ActivatePiston(Robot.piston2));
+  
   }
   public Joystick getJoystick1(){
     return joy1;
@@ -58,5 +58,8 @@ public class OI {
   }
   public boolean isTurnButtonSet(){
     return turnTableButton.get();
+  }
+  public boolean isButtonGoingUp(){
+    return armForwardButton.get();
   }
 }

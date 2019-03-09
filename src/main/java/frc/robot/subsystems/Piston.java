@@ -8,33 +8,35 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Solenoid;;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;;
 
 /**
  * Add your docs here.
  */
 public class Piston extends Subsystem {
-  private Solenoid  piston;
-  private int port;
+  private DoubleSolenoid  piston;
+  private int port1, port2;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public Piston(int port){
-    this.port = port;
-    piston = new Solenoid(port);
+  public Piston(int port1, int port2){
+    this.port1 = port1;
+    this.port2 = port2;
+    piston = new DoubleSolenoid(port1, port2);
   }
-  public boolean isOn(){
+  public DoubleSolenoid.Value isOn(){
     return piston.get();
   }
 
   public void on(){
-    if (piston.get() == false) {
-     piston.set(true);
-    }
+    piston.set(Value.kForward);
   }
 
   public void off() {
-    piston.set(false);
+   
+     piston.set(Value.kReverse);
   }
 
   @Override

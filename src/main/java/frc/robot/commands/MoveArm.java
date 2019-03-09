@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 import frc.robot.subsystems.RotatingControl;
 
 public class MoveArm extends Command {
@@ -25,12 +26,16 @@ public class MoveArm extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    if(Robot.oi.isButtonGoingUp() == true){
+      System.out.println(Robot.oi.isButtonGoingUp());
+      Robot.piston1.off();
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("direction: " + forward);
+    // System.out.println("direction: " + forward);
     rotatingControl.turn(forward);
   }
 

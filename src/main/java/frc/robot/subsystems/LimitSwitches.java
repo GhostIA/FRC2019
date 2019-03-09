@@ -15,12 +15,18 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class LimitSwitches extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private DigitalInput limitSwitch;
+  private DigitalInput limitSwitch1, limitSwitch2;
   public LimitSwitches(){
-    limitSwitch = new DigitalInput(0);
+    limitSwitch1 = new DigitalInput(0);
+    limitSwitch2 = new DigitalInput(1);
+
   }
-  public boolean isSwitchSet(){
-    boolean switchSet = limitSwitch.get();
+  public boolean isSwitch1Set(){
+    boolean switchSet = limitSwitch1.get();
+    return switchSet;
+  }
+  public boolean isSwitch2Set(){
+    boolean switchSet = limitSwitch2.get();
     return switchSet;
   }
 
