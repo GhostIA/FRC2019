@@ -25,7 +25,8 @@ public class ActivatePiston extends Command {
   protected void execute() {
    piston.on();
 
-   if(Robot.limitSwitch.isSwitch2Set()){
+   if(!Robot.limitSwitch.isSwitch2Set()){
+    System.out.println(Robot.limitSwitch.isSwitch2Set());
      piston.off();
    }
   }

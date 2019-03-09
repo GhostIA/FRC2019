@@ -24,15 +24,16 @@ import frc.robot.commands.MoveArm;
 public class OI {
   private Joystick joy1 = new Joystick(0);
   private Joystick joy2 = new Joystick(1);
+  private Joystick joy3 = new Joystick(2);
   private ArmControlConsole armControlConsole = new ArmControlConsole(3);
   private JoystickButton vision = new JoystickButton(joy1, 3);
-  private JoystickButton turnTableButton = new JoystickButton(joy1, 4);
+  private JoystickButton turnTableButton = new JoystickButton(joy2, 5);
   private JoystickButton armOneForwardButton = new JoystickButton(joy2, 1);
   // private JoystickButton pistonButton = new JoystickButton(joy2, 2);
-  private JoystickButton pistonButton1 = new JoystickButton(joy1, 1);
-  private JoystickButton pistonButton2 = new JoystickButton(joy1, 2);
-  private JoystickButton armForwardButton = new JoystickButton(joy1, 3);
-  private JoystickButton armReverseButton = new JoystickButton(joy1, 4);
+  private JoystickButton pistonButton1 = new JoystickButton(joy2, 1);
+  private JoystickButton pistonButton2 = new JoystickButton(joy2, 2);
+  private JoystickButton armForwardButton = new JoystickButton(joy2, 3);
+  private JoystickButton armReverseButton = new JoystickButton(joy2, 4);
   
   public OI(){
     vision.whileHeld(new LimeLightAuto());
