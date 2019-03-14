@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   public static USBCameraServer camera;
   public static TurnTable turnTable;
   public static ArmSubsystem armControls;
-  public static Piston piston1, piston2;
+  public static Piston piston1, piston2, piston3;
   public static RotatingControl arm;
   Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -53,7 +53,9 @@ public class Robot extends TimedRobot {
   public void robotInit() { 
     turnTable = new TurnTable();
     arm = new RotatingControl(2);
-    piston1 = new Piston(2, 3); 
+    piston1 = new Piston(0, 1); 
+    piston2 = new Piston(2, 3);
+    piston3 = new Piston(4, 5);
    
     oi = new OI();
     driveTrain = new DriveTrain();
