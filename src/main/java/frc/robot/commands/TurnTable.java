@@ -10,10 +10,15 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class TurnTableForward extends Command {
-  public TurnTableForward() {
+public class TurnTable extends Command {
+
+  private boolean forward;
+
+  public TurnTable(boolean forward) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+
+    this.forward = forward;
   }
 
   @Override
@@ -28,29 +33,21 @@ public class TurnTableForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.turnTable.turn(true); 
+    Robot.turnTable.turn(forward); 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.oi.isTurnButtonSet() == false){
-      return false;
-    } else{
-     
-      return true;
-    }
+    return false;
   }
 
   // Called once after isFinished returns true
-  @Override
-  protected void end() {
-    Robot.turnTable.reset();   
-  }
-
+ 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.turnTable.stop();
   }
 }

@@ -7,28 +7,31 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.Piston;
 
 public class ActivatePiston extends Command {
   private Piston piston;
-  private boolean initialState;
 
   public ActivatePiston(Piston piston) {
     super(piston);
     this.piston = piston;
   }
 
+  @Override
+  protected void initialize() {
+  }
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   piston.on();
-
-   if(!Robot.limitSwitch.isSwitch2Set()){
-    System.out.println(Robot.limitSwitch.isSwitch2Set());
-     piston.off();
-   }
+    piston.on();
+    if(!Robot.limitSwitch.isSwitch2Set()){
+    System.out.println(!Robot.limitSwitch.isSwitch2Set());
+    piston.off();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

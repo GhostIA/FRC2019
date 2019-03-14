@@ -21,7 +21,7 @@ public class TurnTable extends Subsystem {
   private boolean isTurning = false;
 
   private static final long TURN_TIME = 1000;
-  private static final double SPEED = 1;
+  private static final double SPEED = 0.3;
   private static final int PORT = 3;
 
   public TurnTable() {
@@ -78,7 +78,7 @@ public class TurnTable extends Subsystem {
   }
 
   public void stop() {
-
+    turnTableMotor.set(0);
   }
 
   @Override
