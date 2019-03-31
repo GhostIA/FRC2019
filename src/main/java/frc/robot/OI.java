@@ -16,7 +16,6 @@ import frc.robot.subsystems.ArmControlConsole;
 import frc.robot.commands.TurnTable;
 import frc.robot.commands.ActivatePiston;
 import frc.robot.commands.MoveArm;
-import frc.robot.commands.Claw;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,10 +30,10 @@ public class OI {
   private JoystickButton turnTableForwardButton = new JoystickButton(joy3, 1);
   // private JoystickButton armOneForwardButton = new JoystickButton(joy2, 1);
   // private JoystickButton pistonButton = new JoystickButton(joy2, 2);
-  private JoystickButton pistonButton1 = new JoystickButton(joy3, 2);
-  private JoystickButton pistonButton2 = new JoystickButton(joy3, 7);
+  private JoystickButton pistonButtonForward = new JoystickButton(joy3, 5);
+  private JoystickButton pistonButtonReverse = new JoystickButton(joy3, 7);
   private JoystickButton armForwardButton = new JoystickButton(joy3, 3);
-  private JoystickButton armReverseButton = new JoystickButton(joy3, 5);
+  private JoystickButton armReverseButton = new JoystickButton(joy3, 2);
   private JoystickButton turnReverseButton = new JoystickButton(joy3, 4);
   
   public OI(){
@@ -43,9 +42,8 @@ public class OI {
     turnReverseButton.whileHeld(new TurnTable(false));
     armForwardButton.whileHeld(new MoveArm(Robot.arm, true));
     armReverseButton.whileHeld(new MoveArm(Robot.arm, false));
-    pistonButton1.whileHeld(new ActivatePiston(Robot.piston1));
-    pistonButton2.whileHeld(new Claw());
-  
+    pistonButtonForward.whileHeld(new ActivatePiston(Robot.piston1, true));
+    pistonButtonReverse.whileHeld(new ActivatePiston(Robot.piston1, false));
   }
   public Joystick getJoystick1(){
     return joy1;

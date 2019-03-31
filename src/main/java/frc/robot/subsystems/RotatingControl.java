@@ -20,6 +20,9 @@ public class RotatingControl extends Subsystem {
 
   private WPI_TalonSRX motor;
   private static final double SPEED = .1;
+  private static final long TURN_TIME = 35000;
+  private boolean isHolding = false;
+  private long startTime;
 
   public RotatingControl(int port) {
     super();
@@ -28,11 +31,23 @@ public class RotatingControl extends Subsystem {
   }
 
   public void turn(boolean forward) {
-    motor.set(forward ? SPEED * 5 : SPEED * 2);
+    motor.set(forward ? SPEED * 8 : SPEED * -3);
   }
 
   public void stop() {
     motor.set(0);
+  }
+  public void lock(){
+    if(!isHolding){
+      startTime = System.currentTimeMillis();
+      isHolding = true;
+      return;
+    }
+    long elapsedTime = System.currentTimeMillis() - startTime;
+    if(elapsedTime < TURN_TIME){
+      return;
+    }
+
   }
 
   @Override

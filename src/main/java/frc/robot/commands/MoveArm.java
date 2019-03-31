@@ -28,14 +28,13 @@ public class MoveArm extends Command {
   protected void initialize() {
     if(Robot.oi.isButtonGoingUp() == true){
       System.out.println(Robot.oi.isButtonGoingUp());
-      Robot.piston1.off();
     }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // System.out.println("direction: " + forward);
+    System.out.println("direction: " + forward);
     rotatingControl.turn(forward);
   }
 

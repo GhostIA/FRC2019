@@ -41,7 +41,7 @@ public class DriveTrain extends Subsystem {
 
 			
 			frontLeftMotor = new WPI_TalonSRX(1);
-			frontRightMotor = new WPI_TalonSRX(2);
+			frontRightMotor = new WPI_TalonSRX(4);
 			
 			frontLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
 

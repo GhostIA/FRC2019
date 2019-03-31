@@ -26,17 +26,21 @@ public class Piston extends Subsystem {
     this.port2 = port2;
     piston = new DoubleSolenoid(port1, port2);
   }
-  public DoubleSolenoid.Value isOn(){
+  public DoubleSolenoid.Value isForward(){
     return piston.get();
   }
 
-  public void on(){
+  public void forward(){
     piston.set(Value.kForward);
   }
 
-  public void off() {
+  public void reverse() {
    
      piston.set(Value.kReverse);
+  }
+
+  public void off() {
+   // piston.set(Value.kOff);
   }
 
   @Override

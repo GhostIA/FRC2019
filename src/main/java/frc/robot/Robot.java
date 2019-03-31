@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() { 
     turnTable = new TurnTable();
-    arm = new RotatingControl(0);
+    arm = new RotatingControl(2);
     piston1 = new Piston(0, 1); 
     piston2 = new Piston(2, 3);
     piston3 = new Piston(4, 5);

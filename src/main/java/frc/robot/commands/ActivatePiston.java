@@ -14,10 +14,11 @@ import frc.robot.subsystems.Piston;
 
 public class ActivatePiston extends Command {
   private Piston piston;
+  private boolean forward;
 
-  public ActivatePiston(Piston piston) {
-    super(piston);
+  public ActivatePiston(Piston piston, boolean forward) {
     this.piston = piston;
+    this.forward = forward;
   }
 
   @Override
@@ -27,10 +28,11 @@ public class ActivatePiston extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    piston.on();
-    if(!Robot.limitSwitch.isSwitch2Set()){
-    System.out.println(!Robot.limitSwitch.isSwitch2Set());
-    piston.off();
+    System.out.println(" piston forward" + forward);
+    if (forward) {
+      piston.forward();
+    } else {
+      piston.reverse();
     }
   }
 
